@@ -1,50 +1,37 @@
 <section class="main-container">
     <div class="header-content">
-        <p class="league-title">Anglicko - Premier League</p>
-        <button class="toggle-button"><i class="ph ph-caret-down"></i></button>
+        <p class="league-title">({{leagueGroup().sportName}}) {{leagueGroup().regionName}} - {{ leagueGroup().leagueName }}</p>
+        <button class="toggle-button" (click)="toggleCollapsed()">
+            <i class="ph" 
+               [class.ph-caret-up]="!isCollapsed()" 
+               [class.ph-caret-down]="isCollapsed()">
+            </i>
+        </button>
     </div>
-    <div class="table-wrapper">
-        <table class="matches-table">
-            <thead>
-                <tr>
-                    <th class="col-date"></th>
-                    <th class="col-match"></th>
-                    <th class="col-odd">1</th>
-                    <th class="col-odd">X</th>
-                    <th class="col-odd">2</th>
-                    <th class="col-odd">1X</th>
-                    <th class="col-odd">X2</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="col-date">20.9. 14:00</td>
-                    <td class="col-match">Manchester United vs Chelsea</td>
-                    <td class="col-odd">2</td>
-                    <td class="col-odd">4</td>
-                    <td class="col-odd">2.2</td>
-                    <td class="col-odd">1.4</td>
-                    <td class="col-odd">1.5</td>
-                </tr>
-                <tr>
-                    <td class="col-date">22.10. 15:30</td>
-                    <td class="col-match">Tottenham vs WestHam</td>
-                    <td class="col-odd">1.6</td>
-                    <td class="col-odd">2</td>
-                    <td class="col-odd">3.5</td>
-                    <td class="col-odd">1.1</td>
-                    <td class="col-odd">2.0</td>
-                </tr>
-                <tr>
-                    <td class="col-date">18.4. 10:00</td>
-                    <td class="col-match">Liverpool vs Arsenal</td>
-                    <td class="col-odd">1.8</td>
-                    <td class="col-odd">2.5</td>
-                    <td class="col-odd">3.1</td>
-                    <td class="col-odd">1.4</td>
-                    <td class="col-odd">1.9</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    @if (!isCollapsed()) {
+        <div class="table-wrapper">
+            <table class="matches-table">
+                <thead>
+                    <tr>
+                        <th class="col-date"></th>
+                        <th class="col-match"></th>
+                        @for (type of tipTypes; track type) {
+                            <th class="col-odd">{{type}}</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (match of leagueGroup().matches; track match.id) {
+                        <tr>
+                            <td class="col-date">{{match.date | date : 'd.M. HH:mm'}}</td>
+                            <td class="col-match">{{match.name}}</td>
+                            @for (type of tipTypes; track type) {
+                                <td class="col-odd">{{match.odds[type]?.rate ?? '-'}}</td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
 </section>

@@ -1,0 +1,22 @@
+.error-state,
+.empty-state,
+app-loader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    height: 100dvh;
+
+    .ph {
+        font-size: 40px;
+    }
+
+    .ph-warning {
+        color: var(--error-color);
+    }
+
+    .ph-calendar-x{
+        color: var(--empty-state-color);
+    }
+}

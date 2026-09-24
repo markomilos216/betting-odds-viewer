@@ -1,1 +1,17 @@
-<app-league-table></app-league-table>
+@if (isLoading()) {
+    <app-loader></app-loader>
+} @else if (errorMessage()) {
+    <div class="error-state">
+        <i class="ph ph-warning"></i>
+        <p>{{errorMessage()}}</p>
+    </div>
+} @else {
+    @for (group of leagueGroup(); track group.leagueId) {
+        <app-league-table [leagueGroup]="group"></app-league-table>
+    } @empty {
+        <div class="empty-state">
+            <i class="ph ph-calendar-x"></i>
+            <p>Momentálne nie sú k dispozícii žiadne zápasy.</p>
+        </div>
+    }
+}
