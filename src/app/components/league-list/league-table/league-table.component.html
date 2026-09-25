@@ -1,5 +1,5 @@
 <section class="main-container">
-    <div class="header-content">
+    <div class="header-content" [style.backgroundColor]="leagueColor()">
         <p class="league-title">({{leagueGroup().sportName}}) {{leagueGroup().regionName}} - {{ leagueGroup().leagueName }}</p>
         <button class="toggle-button" (click)="toggleCollapsed()">
             <i class="ph" 
