@@ -34,7 +34,7 @@
     
             tr th,
             tr td{
-                border: 1px solid orange;
+                border: 1px solid #FFA500;
                 padding: 6px 0;
     
                 &.col-date {
@@ -51,9 +51,14 @@
                     width: 55px;
                     text-align: center;
                     cursor: pointer;
+                    transition: all 0.25s ease-in-out;
+
+                    &.is-highlighted {
+                        background-color: #FFA500;
+                        font-weight: 600;
+                    }
                 }
             }
         }
     }
-
 }

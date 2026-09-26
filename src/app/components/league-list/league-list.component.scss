@@ -20,3 +20,19 @@ app-loader {
         color: var(--empty-state-color);
     }
 }
+
+.main-heading {
+    padding: 45px 0;
+    text-align: center;
+}
+
+.highlight-button {
+    display: block;
+    margin-left: auto;
+    background-color: #f59e0b;
+    font-weight: 600;
+    padding: 13px 20px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}

@@ -13,6 +13,7 @@ import { DEFAULT_LEAGUE_COLOR, LEAGUE_COLORS } from '../../../constants/league-c
 })
 export class LeagueTableComponent{
   leagueGroup = input.required<LeagueGroup>();
+  highlightedRate = input.required<number>();
   isCollapsed = signal<boolean>(false);
   leagueColor = computed(() => {
     const leagueId = this.leagueGroup().leagueId;

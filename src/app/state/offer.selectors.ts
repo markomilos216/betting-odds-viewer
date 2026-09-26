@@ -24,4 +24,12 @@ export const getLeagueGroups = createSelector(getMatches, (state) => {
         groups[match.leagueId].matches.push(match);
     }
     return Object.values(groups);
-})
+});
+export const getUniqueSortedOdds = createSelector(getMatches, (state) => {
+    const allRates = state
+        .flatMap(({odds}) => Object.values(odds))
+        .map(odd => odd?.rate)
+        .filter(rate => rate);
+
+    return [...new Set(allRates)].sort((a, b) => b - a);
+});

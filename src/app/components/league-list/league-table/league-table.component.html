@@ -26,7 +26,8 @@
                             <td class="col-date">{{match.date | date : 'd.M. HH:mm'}}</td>
                             <td class="col-match">{{match.name}}</td>
                             @for (type of tipTypes; track type) {
-                                <td class="col-odd">{{match.odds[type]?.rate ?? '-'}}</td>
+                                <td class="col-odd"
+                                    [class.is-highlighted]="highlightedRate() === match.odds[type]?.rate">{{match.odds[type]?.rate ?? '-'}}</td>
                             }
                         </tr>
                     }

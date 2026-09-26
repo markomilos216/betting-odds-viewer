@@ -6,8 +6,18 @@
         <p>{{errorMessage()}}</p>
     </div>
 } @else {
+    @if (leagueGroup().length > 0) {
+        <h1 class="main-heading">Ponuka zápasov</h1>
+        <button class="highlight-button" (click)="highlightNextOdd()">{{
+            (highlightIndex() < 0 || highlightIndex() === uniqueSortedOdds().length - 1) 
+            ? 'Označiť najvyšší kurz' 
+            : 'Ďalší najvyšší kurz'}}
+        </button>
+    }
     @for (group of leagueGroup(); track group.leagueId) {
-        <app-league-table [leagueGroup]="group"></app-league-table>
+        <app-league-table 
+            [leagueGroup]="group"
+            [highlightedRate]="highlightedRate()"></app-league-table>
     } @empty {
         <div class="empty-state">
             <i class="ph ph-calendar-x"></i>
